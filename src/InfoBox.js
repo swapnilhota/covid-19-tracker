@@ -9,9 +9,9 @@ const InfoBox = ({ title, cases, total }) => {
                     {title}
                 </Typography>
                 <h2 className="infoBox__cases">{cases}</h2>
-                <Typography color="textSecondary">
+                <Typography className="infoBox__total" color="textSecondary">
                     {total} Total
-                </Typography className="infoBox__total">
+                </Typography>
             </CardContent>
         </Card>
     )
