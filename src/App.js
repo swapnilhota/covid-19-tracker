@@ -47,6 +47,9 @@ function App() {
           </Select>
         </FormControl>
       </div>
+      <div className="app__stats">
+
+      </div>
     </div>
   );
 }
