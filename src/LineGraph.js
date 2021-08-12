@@ -1,6 +1,28 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { Line } from "react-chartjs-2";
+import numeral from 'numeral';
+
+const options = {
+    legend: {
+        display: false,
+    },
+    elements: {
+        point: {
+            radius: 0,
+        }
+    },
+    maintainAspectRatio: false,
+    tooltips: {
+        mode: "index",
+        intersect: false,
+        callbacks: {
+            label: (tooltipItem, data) => {
+                return numeral(tooltipItem.value).format("+0.0");
+            }
+        }
+    }
+}
 
 const LineGraph = () => {
 
@@ -18,7 +40,7 @@ const LineGraph = () => {
                 chartData.push(newDataPoint);
             }
             lastDataPoint = data[casesType][date];
-        })
+        }
         return chartData;
     }
 
@@ -34,6 +56,7 @@ const LineGraph = () => {
     return (
         <div>
             <Line
+                options={options}
                 data={{
                     datasets: [
                         {
@@ -43,7 +66,7 @@ const LineGraph = () => {
                         }
                     ]
                 }}
-                options
+
             />
         </div>
     )
