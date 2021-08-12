@@ -9,6 +9,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     // fetches worldwide data when site loads
@@ -32,6 +33,7 @@ function App() {
             }
           ))
           setCountries(countries);
+          setTableData(data);
         })
     }
 
