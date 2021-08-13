@@ -6,6 +6,7 @@ import LineGraph from './LineGraph';
 import Map from './Map';
 import Table from './Table';
 import { sortData } from './utils';
+import "leaflet/dist/leaflet.css"
 
 function App() {
 
