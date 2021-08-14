@@ -14,6 +14,8 @@ function App() {
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState([34.80746, -40.4796]);
+  const [zoom, setZoom] = useState(3);
 
   useEffect(() => {
     // fetches worldwide data when site loads
@@ -80,7 +82,10 @@ function App() {
           <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
           <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
-
+        <Map
+          center={mapCenter}
+          zoom={zoom}
+        />
       </div>
       <Card className="app__right">
         <CardContent>
