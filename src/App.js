@@ -1,12 +1,13 @@
 import { FormControl, MenuItem, Select, Card, CardContent } from '@material-ui/core';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import InfoBox from './InfoBox';
 import LineGraph from './LineGraph';
 import Map from './Map';
 import Table from './Table';
-import { sortData } from './utils';
+import { sortData, prettyPrintStat } from './utils';
 import "leaflet/dist/leaflet.css"
+import "./InfoBox.css";
 
 function App() {
 
