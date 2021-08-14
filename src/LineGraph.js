@@ -4,9 +4,12 @@ import { Line } from "react-chartjs-2";
 import numeral from 'numeral';
 
 const options = {
-    plugins: {
-        legend: {
-            display: false,
+    legend: {
+        display: false,
+    },
+    elements: {
+        point: {
+            radius: 0,
         },
     },
     maintainAspectRatio: false,
@@ -15,13 +18,8 @@ const options = {
         intersect: false,
         callbacks: {
             label: function (tooltipItem, data) {
-                return numeral(tooltipItem.value).format("+0.0");
+                return numeral(tooltipItem.value).format("+0,0");
             },
-        },
-    },
-    elements: {
-        point: {
-            radius: 0,
         },
     },
     scales: {
@@ -29,10 +27,10 @@ const options = {
             {
                 type: "time",
                 time: {
-                    format: "DD/MM/YY",
+                    format: "MM/DD/YY",
                     tooltipFormat: "ll",
-                }
-            }
+                },
+            },
         ],
         yAxes: [
             {
@@ -40,14 +38,15 @@ const options = {
                     display: false,
                 },
                 ticks: {
+                    // Include a dollar sign in the ticks
                     callback: function (value, index, values) {
                         return numeral(value).format("0a");
-                    }
-                }
-            }
-        ]
-    }
-}
+                    },
+                },
+            },
+        ],
+    },
+};
 
 const buildChartData = (data, casesType = "cases") => {
     const chartData = [];
