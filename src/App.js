@@ -16,6 +16,8 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState([34.80746, -40.4796]);
   const [zoom, setZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     // fetches worldwide data when site loads
@@ -43,6 +45,7 @@ function App() {
 
           setCountries(countries);
           setTableData(sortedData);
+          setMapCountries(data);
         })
     }
 
@@ -58,6 +61,10 @@ function App() {
       .then(data => {
         setCountry(countryCode);
         setCountryInfo(data);
+        countryCode === "worldwide"
+          ? setMapCenter([34.80746, -40.4796])
+          : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setZoom(4);
       })
   }
 
