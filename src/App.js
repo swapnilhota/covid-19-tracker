@@ -55,7 +55,9 @@ function App() {
   }, []);
 
   const onCountryChange = async (e) => {
+    setLoading(true);
     const countryCode = e.target.value;
+    setCountry(countryCode);
 
     const url = countryCode === 'worldwide' ? 'https://disease.sh/v3/covid-19/all' : `https://disease.sh/v3/covid-19/countries/${countryCode}`
     await fetch(url)
@@ -63,6 +65,7 @@ function App() {
       .then(data => {
         setCountry(countryCode);
         setCountryInfo(data);
+        setLoading(false);
         countryCode === "worldwide"
           ? setMapCenter([34.80746, -40.4796])
           : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
