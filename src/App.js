@@ -18,6 +18,7 @@ function App() {
   const [zoom, setZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     // fetches worldwide data when site loads
