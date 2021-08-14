@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import './Map.css';
 import { showDataOnMap } from './utils';
 
-const Map = ({ center, zoom, countries, casesType }) => {
+function Map({ center, zoom, countries, casesType }) {
 
     function ChangeView({ center, zoom }) {
         const map = useMap();
