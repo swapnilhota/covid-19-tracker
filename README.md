@@ -5,3 +5,7 @@
 * Used Material-ui for styling.
 * Deployed site -> https://unruffled-brattain-dea0e2.netlify.app/
 
+### Snapshot 
+
+<img src="Covid-19 Tracker.png" width="600" />
+
