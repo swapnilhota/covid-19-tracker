@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import InfoBox from './InfoBox';
 import LineGraph from './LineGraph';
-import Map from './Map';
 import Table from './Table';
 import { sortData, prettyPrintStat } from './utils';
-import "leaflet/dist/leaflet.css"
 import "./InfoBox.css";
 
 function App() {
@@ -15,9 +13,6 @@ function App() {
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
-  const [mapCenter, setMapCenter] = useState([34.80746, -40.4796]);
-  const [zoom, setZoom] = useState(3);
-  const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
   const [isLoading, setLoading] = useState(false);
 
@@ -47,7 +42,6 @@ function App() {
 
           setCountries(countries);
           setTableData(sortedData);
-          setMapCountries(data);
         })
     }
 
@@ -66,10 +60,6 @@ function App() {
         setCountry(countryCode);
         setCountryInfo(data);
         setLoading(false);
-        countryCode === "worldwide"
-          ? setMapCenter([34.80746, -40.4796])
-          : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setZoom(4);
       })
   }
 
@@ -125,19 +115,13 @@ function App() {
             isloading={isLoading}
           />
         </div>
-        <Map
-          center={mapCenter}
-          zoom={zoom}
-          countries={mapCountries}
-          casesType={casesType}
-        />
+        <h3 className="app__graphTitle">Worldwide new cases</h3>
+        <LineGraph className="app__graph" />
       </div>
       <Card className="app__right">
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={tableData} />
-          <h3 className="app__graphTitle">Worldwide new cases</h3>
-          <LineGraph className="app__graph" />
         </CardContent>
       </Card>
     </div>

@@ -64,7 +64,7 @@ const buildChartData = (data, casesType = "cases") => {
     return chartData;
 }
 
-const LineGraph = () => {
+const LineGraph = ({ className }) => {
 
     const [data, setData] = useState({});
 
@@ -83,11 +83,10 @@ const LineGraph = () => {
     }, [])
 
     return (
-        <div>
+        <div className={className}>
             {
                 data?.length > 0 && (
                     <Line
-                        options={options}
                         data={{
                             datasets: [
                                 {
@@ -97,7 +96,7 @@ const LineGraph = () => {
                                 }
                             ]
                         }}
-
+                        options={options}
                     />
                 )
             }
