@@ -79,7 +79,11 @@ function App() {
         <div className="app__header">
           <h1>COVID-19 TRACKER</h1>
           <FormControl className="app__dropdown">
-            <Select variant="outlined" onChange={onCountryChange} value={country}>
+            <Select
+              variant="outlined"
+              onChange={onCountryChange}
+              value={country}
+            >
               <MenuItem value="worldwide" >Worldwide</MenuItem>
               {
                 countries.map(country => (
@@ -89,10 +93,37 @@ function App() {
             </Select>
           </FormControl>
         </div>
+
         <div className="app__stats">
-          <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
-          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          <InfoBox
+            isRed
+            active={casesType === "cases"}
+            className="infoBox__cases"
+            onClick={(e) => setCasesType("cases")}
+            title="Coronavirus Cases"
+            total={prettyPrintStat(countryInfo.cases)}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            isloading={isLoading}
+          />
+          <InfoBox
+            active={casesType === "recovered"}
+            className="infoBox__recovered"
+            onClick={(e) => setCasesType("recovered")}
+            title="Recovered"
+            total={prettyPrintStat(countryInfo.recovered)}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            isloading={isLoading}
+          />
+          <InfoBox
+            isGrey
+            active={casesType === "deaths"}
+            className="infoBox__deaths"
+            onClick={(e) => setCasesType("deaths")}
+            title="Deaths"
+            total={prettyPrintStat(countryInfo.deaths)}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            isloading={isLoading}
+          />
         </div>
         <Map
           center={mapCenter}
